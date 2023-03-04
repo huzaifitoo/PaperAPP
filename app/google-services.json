@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "54672575297",
+    "project_id": "paperapp-8bc2c",
+    "storage_bucket": "paperapp-8bc2c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:54672575297:android:9d6ba5a9e4b3550b8dafc0",
+        "android_client_info": {
+          "package_name": "com.example.paperapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "54672575297-hsf37ntovhvldaepbd9coq34ujevl4me.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCyhe6MG_elhoMg4t2cAmXzMBoVKAK_0U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "54672575297-hsf37ntovhvldaepbd9coq34ujevl4me.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
