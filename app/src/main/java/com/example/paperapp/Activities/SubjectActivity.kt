@@ -1,5 +1,6 @@
 package com.example.paperapp.Activities
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -22,6 +23,7 @@ class SubjectActivity : AppCompatActivity() {
 
     lateinit var firebaseDatabase: FirebaseDatabase
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_subject)
@@ -38,13 +40,14 @@ class SubjectActivity : AppCompatActivity() {
 
         binding.optionsTitle.text="CLASS $className"
 
-        var adapter= SubjectListAdapter(list,this)
+        val adapter= SubjectListAdapter(list,this)
 
         val layoutManager=LinearLayoutManager(this)
 
         binding.subjectRv.layoutManager=layoutManager
 
-        firebaseDatabase.reference.child("Subjects").addListenerForSingleValueEvent(object :ValueEventListener{
+        firebaseDatabase.reference.child("subjects").addListenerForSingleValueEvent(object :ValueEventListener{
+            @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 list.clear()
@@ -53,7 +56,7 @@ class SubjectActivity : AppCompatActivity() {
 
                     for (dataSnapshot in snapshot.children){
 
-                        var data= dataSnapshot.getValue(SubjectModel::class.java)
+                        val data= dataSnapshot.getValue(SubjectModel::class.java)
 
                         data?.subjectId= dataSnapshot.key?.toInt()!!
 

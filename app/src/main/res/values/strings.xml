@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">PaperApp</string>
     <string name="paperist">PaperIst</string>
+    <string name="paper_one">Paper One</string>
+    <string name="todo">TODO</string>
+    <string name="abc">TODO</string>
 </resources>

@@ -3,6 +3,7 @@ package com.example.paperapp.Activities
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.paperapp.Adapters.ClassAdapter
@@ -27,34 +28,36 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        binding= DataBindingUtil.setContentView(this,R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        firebaseDatabase= FirebaseDatabase.getInstance()
+        firebaseDatabase = FirebaseDatabase.getInstance()
 
-        list= ArrayList()
+        list = ArrayList()
 
-        val adapter= ClassAdapter(list,this)
+        val adapter = ClassAdapter(list, this)
 
-        val layoutManager= GridLayoutManager(this,2)
+        val layoutManager = GridLayoutManager(this, 2)
 
         binding.classRv.layoutManager = layoutManager
 
-        firebaseDatabase.reference.child("Classes")
-            .addListenerForSingleValueEvent(object : ValueEventListener{
+        firebaseDatabase.reference.child("classes")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
                 @SuppressLint("NotifyDataSetChanged")
                 override fun onDataChange(snapshot: DataSnapshot) {
 
                     list.clear()
 
-                    if (snapshot.exists()){
+                    if (snapshot.exists()) {
 
-                        for (dataSnapshot in snapshot.children){
+                        for (dataSnapshot in snapshot.children) {
 
                             val data = dataSnapshot.getValue(ClassModel::class.java)
 
-                            data?.classId= dataSnapshot.key?.toInt()!!
+                            data?.classId = dataSnapshot.key?.toInt()!!
 
                             list.add(data!!)
+
+                            Log.d("DATA", data.className)
 
                         }
 
@@ -65,17 +68,15 @@ class MainActivity : AppCompatActivity() {
 
                     }
 
-
                 }
 
                 override fun onCancelled(error: DatabaseError) {
 
-
+                    Log.d("DATA", error.message)
 
                 }
 
             })
-
 
 
     }

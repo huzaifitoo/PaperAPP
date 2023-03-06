@@ -1,5 +1,6 @@
 package com.example.paperapp.Activities
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -40,14 +41,15 @@ class TopicActivity : AppCompatActivity() {
 
         binding.optionsTitle.text=subjectName
 
-        var adapter= TopicListAdapter(list,this)
+        val adapter= TopicListAdapter(list,this)
 
         val layoutManager=LinearLayoutManager(this)
 
         binding.topicRv.layoutManager=layoutManager
 
-        firebaseDatabase.reference.child("Topics")
+        firebaseDatabase.reference.child("topics")
             .addListenerForSingleValueEvent(object :ValueEventListener{
+                @SuppressLint("NotifyDataSetChanged")
                 override fun onDataChange(snapshot: DataSnapshot) {
 
                     list.clear()
